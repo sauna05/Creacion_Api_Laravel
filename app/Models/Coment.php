@@ -2,26 +2,24 @@
 
 namespace App\Models;
 
-use Egulias\EmailValidator\Parser\Comment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Coment extends Model
 {
     use HasFactory;
-    
 
-    protected $fillable = ['title', 'body','user_id'];
+    protected $fillable = [
+        "content",
+        "user_id",
+        "post_id",
+    ] ;
 
     public function user(){
         return $this->belongsToMany(User::class);
     }
-
-    public function coment()
+    public function posts()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsToMany(Post::class);
     }
-
-
-    
 }
